@@ -1,0 +1,9 @@
+Coloque aqui o vídeo do extra do álbum.
+
+1. Copie o arquivo para esta pasta, por exemplo: extra.mp4 (H.264/AAC é o formato
+   mais compatível com navegadores).
+2. Em src/data/content.ts, no objeto extraContent, preencha:
+     videoSrc: "/video/extra.mp4",
+   (e, se quiser uma capa, poster: "/photos/capa-video.jpg")
+3. Enquanto videoSrc estiver vazio (""), o botão "Abrir o extra" exibe apenas o
+   placeholder com as instruções.

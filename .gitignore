@@ -1,0 +1,11 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+
+# ambientes temporários de verificação
+.chrome-profile
+.chrome-tmp
+.tmp-*
+*.log

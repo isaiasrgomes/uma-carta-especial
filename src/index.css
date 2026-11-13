@@ -1,0 +1,158 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Quicksand:wght@300..700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Cinzel", ui-serif, Georgia, serif;
+  --font-sans: "Quicksand", ui-sans-serif, system-ui, sans-serif;
+
+  --color-glacier-50: #f7feff;
+  --color-glacier-100: #e0f7fa;
+  --color-glacier-200: #c9eefb;
+  --color-glacier-300: #b3e5fc;
+  --color-glacier-400: #81d4fa;
+  --color-glacier-500: #4fc3e8;
+  --color-glacier-600: #2e9fc9;
+  --color-glacier-700: #237ca0;
+
+  --color-sapphire-400: #5c92b4;
+  --color-sapphire-500: #3d7195;
+  --color-sapphire-600: #2a5a7c;
+  --color-sapphire-700: #1d4664;
+  --color-sapphire-800: #123a5c;
+  --color-sapphire-900: #0b2740;
+
+  --color-silver-200: #eef6fa;
+  --color-silver-300: #d9e8f1;
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-glacier-100 font-sans text-sapphire-800 antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: rgba(129, 212, 250, 0.6);
+    color: #0b2740;
+  }
+
+  :focus-visible {
+    outline: 2px solid #4fc3e8;
+    outline-offset: 3px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #eaf9fd;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #c9eefb, #81d4fa);
+    border-radius: 999px;
+    border: 2px solid #eaf9fd;
+  }
+}
+
+/* ── Neve em parallax ─────────────────────────────────────────── */
+@keyframes snow-drift {
+  0% {
+    transform: translate3d(0, -14vh, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(var(--drift, 24px), 114vh, 0) rotate(360deg);
+  }
+}
+
+.snowfall-flake {
+  position: absolute;
+  top: 0;
+  animation-name: snow-drift;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  contain: layout style paint;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.12;
+    transform: scale(0.7);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+}
+
+.star-twinkle {
+  animation: twinkle 4.5s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+/* ── Halo suave dos ornamentos ───────────────────────────────── */
+@keyframes halo-breathe {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.08);
+  }
+}
+
+.halo-breathe {
+  animation: halo-breathe 6s ease-in-out infinite;
+}
+
+/* ── Textura de cristal / geada ──────────────────────────────── */
+.crystal-texture {
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.9) 1px, transparent 1px),
+    radial-gradient(rgba(129, 212, 250, 0.35) 1px, transparent 1px);
+  background-size:
+    9px 9px,
+    13px 13px;
+  background-position:
+    0 0,
+    4px 6px;
+}
+
+
+/* Onda de geada que varre a página ao trocar de memória */
+.frost-sweep {
+  background: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.85) 45%,
+    rgba(200, 240, 255, 0.55) 55%,
+    transparent 80%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snowfall-flake,
+  .star-twinkle,
+  .halo-breathe {
+    animation: none;
+  }
+  .snowfall-flake,
+  .star-twinkle {
+    display: none;
+  }
+  .will-change-transform {
+    will-change: auto;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
